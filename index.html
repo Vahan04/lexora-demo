@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Լեքսորա — Փաստաբանական գրասենյակ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Serif+Armenian:wght@500;600;700&family=Noto+Sans+Armenian:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f1b2d; --navy2:#16263d; --ink:#1d2433; --muted:#5d6678;
+  --gold:#b8955a; --gold2:#d4b47c; --paper:#f7f4ee; --line:#e4ddcf; --white:#fff;
+  --serif:'Cormorant Garamond','Noto Serif Armenian',Georgia,serif;
+  --sans:'Inter','Noto Sans Armenian',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow:before{content:"";width:28px;height:1px;background:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:2px;font-weight:600;font-size:14px;letter-spacing:.03em;cursor:pointer;border:1px solid transparent;transition:.2s}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:var(--gold2)}
+.btn-line{border-color:rgba(255,255,255,.35);color:#fff}
+.btn-line:hover{border-color:var(--gold);color:var(--gold2)}
+
+/* nav */
+header{position:sticky;top:0;z-index:50;background:rgba(15,27,45,.96);backdrop-filter:blur(6px);border-bottom:1px solid rgba(184,149,90,.25)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:12px;color:#fff}
+.logo svg{flex:none}
+.logo b{font-family:var(--serif);font-size:24px;letter-spacing:.06em;font-weight:700}
+.logo small{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);margin-top:-2px}
+.menu{display:flex;gap:28px;color:#cfd6e2;font-size:14px}
+.menu a:hover{color:var(--gold2)}
+.right{display:flex;align-items:center;gap:16px}
+.lang{display:flex;border:1px solid rgba(255,255,255,.2);border-radius:2px;overflow:hidden}
+.lang button{background:none;border:0;color:#cfd6e2;padding:6px 10px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--sans)}
+.lang button.on{background:var(--gold);color:var(--navy)}
+.phone-top{color:#fff;font-size:14px;font-weight:600}
+.burger{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+
+/* hero */
+.hero{background:radial-gradient(ellipse at 80% 20%,#22385a 0%,var(--navy) 55%);color:#fff;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 119px,rgba(255,255,255,.025) 119px 120px);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center;padding-top:100px;padding-bottom:110px;position:relative;z-index:1}
+.hero h1{font-size:clamp(40px,5.4vw,66px);margin-bottom:22px}
+.hero h1 em{font-style:normal;color:var(--gold2)}
+.hero p{color:#bcc6d6;font-size:18px;max-width:540px;margin-bottom:36px}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap}
+.pillar{justify-self:center;opacity:.9}
+.badges{display:flex;gap:26px;margin-top:46px;color:#9fabbf;font-size:13px;flex-wrap:wrap}
+.badges span{display:flex;align-items:center;gap:8px}
+.badges i{color:var(--gold2);font-style:normal}
+
+/* stats */
+.stats{background:var(--navy2);color:#fff;border-top:1px solid rgba(184,149,90,.3)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:34px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.07)}
+.stat:last-child{border:0}
+.stat b{display:block;font-family:var(--serif);font-size:44px;color:var(--gold2);font-weight:600}
+.stat span{font-size:13px;color:#a9b4c6}
+
+section{padding:96px 0}
+.head{max-width:640px;margin-bottom:52px}
+.head h2{font-size:clamp(32px,4vw,46px);margin-bottom:14px}
+.head p{color:var(--muted)}
+
+/* services */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc{background:var(--white);padding:36px 30px;transition:.25s}
+.svc:hover{background:var(--navy);color:#fff}
+.svc:hover p{color:#b6c0d0}
+.svc .ic{width:46px;height:46px;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold);margin-bottom:22px}
+.svc h3{font-size:24px;margin-bottom:10px}
+.svc p{color:var(--muted);font-size:15px}
+
+/* why */
+.why{background:var(--white)}
+.why .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.quote{background:var(--navy);color:#fff;padding:54px 48px;position:relative}
+.quote:before{content:"“";font-family:var(--serif);font-size:140px;color:var(--gold);position:absolute;top:-20px;left:30px;line-height:1}
+.quote p{font-family:var(--serif);font-size:28px;line-height:1.35;margin:40px 0 24px}
+.quote span{color:var(--gold2);font-size:14px;letter-spacing:.05em}
+.list{display:grid;gap:26px}
+.li{display:flex;gap:18px}
+.li b{font-family:var(--serif);font-size:30px;color:var(--gold);min-width:44px;line-height:1}
+.li h3{font-size:22px;margin-bottom:4px}
+.li p{color:var(--muted);font-size:15px}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.member{background:var(--white);border:1px solid var(--line)}
+.ph{height:260px;background:linear-gradient(160deg,#20324f,#0f1b2d);display:grid;place-items:center;position:relative}
+.ph span{font-family:var(--serif);font-size:72px;color:var(--gold2);letter-spacing:.04em}
+.ph:after{content:"";position:absolute;left:24px;right:24px;bottom:24px;height:1px;background:rgba(212,180,124,.4)}
+.member .in{padding:24px 26px}
+.member h3{font-size:24px}
+.member .role{color:var(--gold);font-size:13px;font-weight:600;letter-spacing:.04em;margin:2px 0 10px}
+.member p{color:var(--muted);font-size:14px}
+
+/* reviews */
+.reviews{background:var(--navy);color:#fff}
+.reviews .head p{color:#a9b4c6}
+.rv{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{border:1px solid rgba(184,149,90,.3);padding:32px 28px}
+.stars{color:var(--gold2);letter-spacing:3px;margin-bottom:14px}
+.card p{color:#cdd5e1;font-size:15px;margin-bottom:20px}
+.card b{font-size:14px}
+.card small{display:block;color:#8693a8;font-size:12px}
+.g{display:inline-flex;align-items:center;gap:8px;margin-top:34px;color:#a9b4c6;font-size:14px}
+.g b{color:var(--gold2);font-family:var(--serif);font-size:24px}
+
+/* consult */
+.consult .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:start}
+.form{background:var(--white);border:1px solid var(--line);padding:40px;border-top:3px solid var(--gold)}
+.form label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--ink)}
+.form input,.form select,.form textarea{width:100%;padding:13px 14px;border:1px solid var(--line);background:var(--paper);font:inherit;font-size:15px;margin-bottom:18px;border-radius:2px;color:var(--ink)}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--gold)}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form .btn{width:100%;justify-content:center}
+.ok{display:none;background:#eef6ee;border:1px solid #b9d9bb;padding:16px;margin-top:16px;font-size:14px}
+.ok a{color:#1c6b2a;font-weight:600;text-decoration:underline}
+.contacts{display:grid;gap:22px;margin-top:30px}
+.ct{display:flex;gap:16px;align-items:flex-start}
+.ct .ic{width:42px;height:42px;background:var(--navy);color:var(--gold2);display:grid;place-items:center;flex:none}
+.ct small{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+.ct b{font-size:16px}
+
+/* faq */
+.faq{background:var(--white)}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;text-align:left;background:none;border:0;padding:22px 0;font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;gap:20px}
+.qa button span{color:var(--gold);transition:.2s}
+.qa div{max-height:0;overflow:hidden;transition:max-height .3s;color:var(--muted)}
+.qa.open div{max-height:200px;padding-bottom:22px}
+.qa.open button span{transform:rotate(45deg)}
+
+/* map */
+.map{height:320px;background:#dfe3e8;position:relative;overflow:hidden}
+.map svg{width:100%;height:100%}
+.pin{position:absolute;left:50%;top:46%;transform:translate(-50%,-100%);text-align:center}
+.pin div{background:var(--navy);color:#fff;padding:10px 16px;font-size:13px;font-weight:600;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.pin div:after{content:"";display:block;width:0;height:0;margin:0 auto;border:8px solid transparent;border-top-color:var(--navy);position:relative;top:18px}
+
+footer{background:#0a1320;color:#8693a8;padding:46px 0 28px;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
+footer .logo b{font-size:20px}
+.demo{margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);text-align:center;font-size:12px;color:#5e6b80;width:100%}
+.demo b{color:var(--gold2);font-weight:600}
+
+.wa{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:60}
+
+@media(max-width:900px){
+  .menu,.phone-top{display:none}
+  .burger{display:block}
+  .menu.show{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--navy);padding:20px 24px;gap:16px}
+  .hero .wrap,.why .wrap,.consult .wrap{grid-template-columns:1fr;gap:40px}
+  .pillar{display:none}
+  .grid3,.team,.rv{grid-template-columns:1fr}
+  .stats .wrap{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  section{padding:70px 0}
+  .form{padding:28px 22px}
+  .form .row{grid-template-columns:1fr;gap:0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo">
+      <svg width="38" height="38" viewBox="0 0 40 40" fill="none" stroke="#d4b47c" stroke-width="1.4"><path d="M20 4v30M8 10h24M12 10l-6 12h12zM28 10l-6 12h12z"/><path d="M6 22a6 3 0 0 0 12 0M22 22a6 3 0 0 0 12 0M13 34h14"/></svg>
+      <div><b data-i="brand">ԼԵՔՍՈՐԱ</b><small data-i="brandSub">Փաստաբանական գրասենյակ</small></div>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#services" data-i="nServices">Ծառայություններ</a>
+      <a href="#about" data-i="nAbout">Մեր մասին</a>
+      <a href="#team" data-i="nTeam">Թիմ</a>
+      <a href="#reviews" data-i="nReviews">Կարծիքներ</a>
+      <a href="#contact" data-i="nContact">Կապ</a>
+    </nav>
+    <div class="right">
+      <a class="phone-top" href="tel:+37499000000">+374 99 00 00 00</a>
+      <div class="lang">
+        <button data-l="hy" class="on">ՀՅ</button><button data-l="ru">RU</button><button data-l="en">EN</button>
+      </div>
+      <button class="burger" onclick="document.getElementById('menu').classList.toggle('show')">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-i="heroEye">Երևան · 2011 թվականից</div>
+      <h1 data-i="heroH" data-html>Ձեր իրավունքները՝ <em>վստահելի ձեռքերում</em></h1>
+      <p data-i="heroP">Քաղաքացիական, քրեական, ընտանեկան և կորպորատիվ գործեր։ Ներկայացնում ենք Ձեր շահերը բոլոր դատական ատյաններում։</p>
+      <div class="ctas">
+        <a href="#contact" class="btn btn-gold" data-i="cta1">Գրանցվել խորհրդատվության</a>
+        <a href="#services" class="btn btn-line" data-i="cta2">Մեր ծառայությունները</a>
+      </div>
+      <div class="badges">
+        <span><i>✦</i><b data-i="b1">Առաջին խորհրդատվությունը՝ անվճար</b></span>
+        <span><i>✦</i><b data-i="b2">ՀՅ · RU · EN</b></span>
+      </div>
+    </div>
+    <svg class="pillar" width="300" height="360" viewBox="0 0 300 360" fill="none" stroke="#d4b47c" stroke-width="1.2" opacity=".85">
+      <path d="M150 20v300"/><circle cx="150" cy="22" r="8"/>
+      <path d="M40 70h220"/><path d="M60 70l-40 110h80zM240 70l-40 110h80z"/>
+      <path d="M20 180a40 16 0 0 0 80 0M200 180a40 16 0 0 0 80 0"/>
+      <path d="M100 320h100M80 340h140"/><path d="M120 320v-10h60v10" />
+    </svg>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><b>15+</b><span data-i="s1">տարվա փորձ</span></div>
+    <div class="stat"><b>1200+</b><span data-i="s2">վարած գործ</span></div>
+    <div class="stat"><b>87%</b><span data-i="s3">հաջող ելք</span></div>
+    <div class="stat"><b>4.9★</b><span data-i="s4">Google վարկանիշ</span></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow" data-i="svcEye">Ծառայություններ</div>
+      <h2 data-i="svcH">Իրավական աջակցություն կյանքի բոլոր իրավիճակներում</h2>
+      <p data-i="svcP">Յուրաքանչյուր գործ վարում է այդ ոլորտում մասնագիտացված փաստաբան։</p>
+    </div>
+    <div class="grid3">
+      <div class="svc"><div class="ic">⚖</div><h3 data-i="v1h">Քաղաքացիական գործեր</h3><p data-i="v1p">Պայմանագրային վեճեր, պարտքերի բռնագանձում, վնասի հատուցում։</p></div>
+      <div class="svc"><div class="ic">🛡</div><h3 data-i="v2h">Քրեական պաշտպանություն</h3><p data-i="v2p">Պաշտպանություն նախաքննության և դատաքննության բոլոր փուլերում։</p></div>
+      <div class="svc"><div class="ic">♡</div><h3 data-i="v3h">Ընտանեկան իրավունք</h3><p data-i="v3p">Ամուսնալուծություն, ալիմենտ, երեխայի բնակության վայրի որոշում, գույքի բաժանում։</p></div>
+      <div class="svc"><div class="ic">▣</div><h3 data-i="v4h">Կորպորատիվ իրավունք</h3><p data-i="v4p">Ընկերությունների և ԱՁ-ների գրանցում, պայմանագրեր, բաժանորդային սպասարկում։</p></div>
+      <div class="svc"><div class="ic">⌂</div><h3 data-i="v5h">Անշարժ գույք</h3><p data-i="v5p">Գործարքների ստուգում, ժառանգություն, սեփականության իրավունքի ճանաչում։</p></div>
+      <div class="svc"><div class="ic">✈</div><h3 data-i="v6h">Օտարերկրացիների համար</h3><p data-i="v6p">Կացության կարգավիճակ, աշխատանքի թույլտվություն, փաստաթղթերի ապոստիլ։</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="about">
+  <div class="wrap">
+    <div class="quote">
+      <p data-i="qP">Մենք չենք խոստանում անհնարինը։ Մենք ազնվորեն գնահատում ենք Ձեր գործը և պայքարում ենք մինչև վերջ։</p>
+      <span data-i="qS">— Արամ Սարգսյան, կառավարող գործընկեր</span>
+    </div>
+    <div>
+      <div class="eyebrow" data-i="whyEye">Ինչու՞ մենք</div>
+      <div class="list">
+        <div class="li"><b>01</b><div><h3 data-i="w1h">Թափանցիկ գներ</h3><p data-i="w1p">Արժեքը համաձայնեցնում ենք նախապես և ամրագրում պայմանագրում։ Թաքնված վճարներ չկան։</p></div></div>
+        <div class="li"><b>02</b><div><h3 data-i="w2h">Միշտ կապի մեջ</h3><p data-i="w2p">Գործի ընթացքի մասին տեղեկացնում ենք WhatsApp-ով կամ Telegram-ով։</p></div></div>
+        <div class="li"><b>03</b><div><h3 data-i="w3h">Գաղտնիություն</h3><p data-i="w3p">Փաստաբանական գաղտնիքը պաշտպանված է օրենքով։ Ձեր տվյալները երբեք չեն փոխանցվում։</p></div></div>
+        <div class="li"><b>04</b><div><h3 data-i="w4h">Արագ արձագանք</h3><p data-i="w4p">Պատասխանում ենք 2 ժամվա ընթացքում, հրատապ գործերով՝ նաև հանգստյան օրերին։</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow" data-i="tEye">Թիմ</div>
+      <h2 data-i="tH">Փաստաբաններ, որոնց վստահում են</h2>
+    </div>
+    <div class="team">
+      <div class="member"><div class="ph"><span>ԱՍ</span></div><div class="in"><h3 data-i="m1n">Արամ Սարգսյան</h3><div class="role" data-i="m1r">Կառավարող գործընկեր</div><p data-i="m1p">Քրեական և վարչական գործեր։ 18 տարվա փորձ, ՀՀ փաստաբանների պալատի անդամ։</p></div></div>
+      <div class="member"><div class="ph"><span>ԼՀ</span></div><div class="in"><h3 data-i="m2n">Լիլիթ Հովհաննիսյան</h3><div class="role" data-i="m2r">Փաստաբան</div><p data-i="m2p">Ընտանեկան և ժառանգական իրավունք։ Խորհրդատվություն ռուսերեն և անգլերեն։</p></div></div>
+      <div class="member"><div class="ph"><span>ԴՄ</span></div><div class="in"><h3 data-i="m3n">Դավիթ Մկրտչյան</h3><div class="role" data-i="m3r">Իրավաբան</div><p data-i="m3p">Կորպորատիվ իրավունք, պայմանագրեր, բիզնեսի գրանցում և հարկային հարցեր։</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow" data-i="rEye">Կարծիքներ</div>
+      <h2 data-i="rH">Ինչ են ասում մեր հաճախորդները</h2>
+    </div>
+    <div class="rv">
+      <div class="card"><div class="stars">★★★★★</div><p data-i="r1">Գործը թվում էր անհույս, բայց երեք ամսում լուծվեց։ Ամեն քայլ բացատրում էին պարզ լեզվով։</p><b data-i="r1n">Արմեն Գ.</b><small data-i="r1s">Քաղաքացիական գործ</small></div>
+      <div class="card"><div class="stars">★★★★★</div><p data-i="r2">Օգնեցին ժառանգության հարցում։ Միշտ կապի մեջ էին, պատասխանում էին նույնիսկ երեկոյան։</p><b data-i="r2n">Մարինե Ա.</b><small data-i="r2s">Ժառանգություն</small></div>
+      <div class="card"><div class="stars">★★★★★</div><p data-i="r3">Very professional. They registered my company and handled the residency paperwork in English.</p><b data-i="r3n">James R.</b><small data-i="r3s">Corporate · Residency</small></div>
+    </div>
+    <div class="g"><b>4.9</b> <span data-i="gTxt">Google Maps-ում՝ 120+ կարծիքի հիման վրա</span></div>
+  </div>
+</section>
+
+<section class="consult" id="contact">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-i="cEye">Կապ</div>
+      <h2 style="font-size:clamp(32px,4vw,46px);margin-bottom:14px" data-i="cH">Գրանցվեք անվճար խորհրդատվության</h2>
+      <p style="color:var(--muted)" data-i="cP">Նկարագրեք Ձեր հարցը, և փաստաբանը կկապվի Ձեզ հետ 2 ժամվա ընթացքում։</p>
+      <div class="contacts">
+        <div class="ct"><div class="ic">☎</div><div><small data-i="kPhone">Հեռախոս</small><b>+374 99 00 00 00</b></div></div>
+        <div class="ct"><div class="ic">⌖</div><div><small data-i="kAddr">Հասցե</small><b data-i="addr">Երևան, Մաշտոցի պող. 10, գրասենյակ 5</b></div></div>
+        <div class="ct"><div class="ic">◷</div><div><small data-i="kHours">Աշխատանքային ժամեր</small><b data-i="hours">Երկ–Ուրբ 10:00–19:00, Շբթ 11:00–16:00</b></div></div>
+        <div class="ct"><div class="ic">✉</div><div><small>Email</small><b>info@lexora.am</b></div></div>
+      </div>
+    </div>
+    <form class="form" id="f">
+      <div class="row">
+        <div><label data-i="fName">Անուն</label><input required id="fn"></div>
+        <div><label data-i="fPhone">Հեռախոս</label><input required id="fp" type="tel" placeholder="+374"></div>
+      </div>
+      <label data-i="fType">Գործի տեսակ</label>
+      <select id="ft">
+        <option data-i="v1h">Քաղաքացիական գործեր</option>
+        <option data-i="v2h">Քրեական պաշտպանություն</option>
+        <option data-i="v3h">Ընտանեկան իրավունք</option>
+        <option data-i="v4h">Կորպորատիվ իրավունք</option>
+        <option data-i="v5h">Անշարժ գույք</option>
+        <option data-i="v6h">Օտարերկրացիների համար</option>
+      </select>
+      <label data-i="fMsg">Համառոտ նկարագրեք հարցը</label>
+      <textarea id="fm" rows="4"></textarea>
+      <button class="btn btn-gold" type="submit" data-i="fBtn">Ուղարկել հայտը</button>
+      <div class="ok" id="ok"><span data-i="okTxt">Շնորհակալություն։ Հայտն ընդունված է։ Ավելի արագ պատասխանի համար՝</span> <a id="wa" href="#" target="_blank" data-i="okWa">գրեք մեզ WhatsApp-ով →</a></div>
+    </form>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap" style="max-width:860px">
+    <div class="head"><div class="eyebrow" data-i="qEye">Հաճախ տրվող հարցեր</div><h2 data-i="qH">Հարցեր և պատասխաններ</h2></div>
+    <div class="qa"><button><b data-i="q1">Որքա՞ն արժե խորհրդատվությունը։</b><span>+</span></button><div data-i="a1">Առաջին 30 րոպեանոց խորհրդատվությունն անվճար է։ Հետագա աշխատանքի արժեքը համաձայնեցվում է նախապես։</div></div>
+    <div class="qa"><button><b data-i="q2">Կարո՞ղ եմ խորհրդատվություն ստանալ առցանց։</b><span>+</span></button><div data-i="a2">Այո, անցկացնում ենք խորհրդատվություններ Zoom-ով, WhatsApp-ով և Telegram-ով։</div></div>
+    <div class="qa"><button><b data-i="q3">Ի՞նչ փաստաթղթեր բերել առաջին հանդիպմանը։</b><span>+</span></button><div data-i="a3">Անձնագիր և գործին վերաբերող բոլոր փաստաթղթերը՝ պայմանագրեր, նամակներ, դատական ակտեր։</div></div>
+    <div class="qa"><button><b data-i="q4">Աշխատու՞մ եք Երևանից դուրս։</b><span>+</span></button><div data-i="a4">Այո, ներկայացնում ենք հաճախորդներին ՀՀ բոլոր մարզերի դատարաններում։</div></div>
+  </div>
+</section>
+
+<div class="map">
+  <svg viewBox="0 0 1200 320" preserveAspectRatio="xMidYMid slice">
+    <rect width="1200" height="320" fill="#e6e9ed"/>
+    <g stroke="#fff" stroke-width="14" fill="none"><path d="M0 160h1200M600 0v320M200 0l300 320M1000 0L760 320M0 60h1200M0 260h1200"/></g>
+    <g stroke="#f3e3c0" stroke-width="20" fill="none"><path d="M0 160h1200"/></g>
+    <g fill="#d8dde3"><rect x="40" y="80" width="120" height="60"/><rect x="640" y="80" width="140" height="60"/><rect x="820" y="180" width="160" height="60"/><rect x="260" y="180" width="120" height="60"/><rect x="420" y="80" width="140" height="60"/></g>
+    <circle cx="1080" cy="230" r="60" fill="#cfe3c8"/>
+  </svg>
+  <div class="pin"><div data-i="pin">Լեքսորա · Մաշտոցի 10</div></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><div><b data-i="brand">ԼԵՔՍՈՐԱ</b><small data-i="brandSub">Փաստաբանական գրասենյակ</small></div></div>
+    <div data-i="copy">© 2026 Լեքսորա։ Բոլոր իրավունքները պաշտպանված են։</div>
+    <div class="demo"><span data-i="demo">Սա դեմո կայք է։ Կայքը պատրաստել է</span> <b>Վահան Արուբջանյան</b> · +374 77 08 03 24</div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/37499000000" target="_blank" aria-label="WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+</a>
+
+<script>
+const T={
+ru:{brand:"ЛЕКСОРА",brandSub:"Адвокатская контора",nServices:"Услуги",nAbout:"О нас",nTeam:"Команда",nReviews:"Отзывы",nContact:"Контакты",
+heroEye:"Ереван · с 2011 года",heroH:"Ваши права — <em>в надёжных руках</em>",heroP:"Гражданские, уголовные, семейные и корпоративные дела. Представляем ваши интересы во всех судебных инстанциях.",
+cta1:"Записаться на консультацию",cta2:"Наши услуги",b1:"Первая консультация — бесплатно",b2:"HY · RU · EN",
+s1:"лет опыта",s2:"проведённых дел",s3:"успешных исходов",s4:"рейтинг Google",
+svcEye:"Услуги",svcH:"Юридическая помощь в любой жизненной ситуации",svcP:"Каждое дело ведёт адвокат, специализирующийся в этой области.",
+v1h:"Гражданские дела",v1p:"Договорные споры, взыскание долгов, возмещение ущерба.",v2h:"Уголовная защита",v2p:"Защита на всех стадиях следствия и судебного разбирательства.",v3h:"Семейное право",v3p:"Развод, алименты, определение места жительства ребёнка, раздел имущества.",v4h:"Корпоративное право",v4p:"Регистрация компаний и ИП, договоры, абонентское обслуживание.",v5h:"Недвижимость",v5p:"Проверка сделок, наследство, признание права собственности.",v6h:"Для иностранцев",v6p:"ВНЖ, разрешение на работу, апостиль документов.",
+qP:"Мы не обещаем невозможного. Мы честно оцениваем ваше дело и боремся до конца.",qS:"— Арам Саргсян, управляющий партнёр",whyEye:"Почему мы",
+w1h:"Прозрачные цены",w1p:"Стоимость согласуем заранее и фиксируем в договоре. Никаких скрытых платежей.",w2h:"Всегда на связи",w2p:"Сообщаем о ходе дела в WhatsApp или Telegram.",w3h:"Конфиденциальность",w3p:"Адвокатская тайна защищена законом. Ваши данные никогда не передаются третьим лицам.",w4h:"Быстрый ответ",w4p:"Отвечаем в течение 2 часов, по срочным делам — и в выходные.",
+tEye:"Команда",tH:"Адвокаты, которым доверяют",m1n:"Арам Саргсян",m1r:"Управляющий партнёр",m1p:"Уголовные и административные дела. 18 лет опыта, член Палаты адвокатов РА.",m2n:"Лилит Оганесян",m2r:"Адвокат",m2p:"Семейное и наследственное право. Консультации на русском и английском.",m3n:"Давид Мкртчян",m3r:"Юрист",m3p:"Корпоративное право, договоры, регистрация бизнеса и налоговые вопросы.",
+rEye:"Отзывы",rH:"Что говорят наши клиенты",r1:"Дело казалось безнадёжным, но решилось за три месяца. Каждый шаг объясняли простым языком.",r1n:"Армен Г.",r1s:"Гражданское дело",r2:"Помогли с наследством. Всегда были на связи, отвечали даже вечером.",r2n:"Марине А.",r2s:"Наследство",r3:"Очень профессионально. Зарегистрировали компанию и оформили ВНЖ, всё общение на английском.",r3n:"James R.",r3s:"Корпоративное · ВНЖ",gTxt:"в Google Maps — на основе 120+ отзывов",
+cEye:"Контакты",cH:"Запишитесь на бесплатную консультацию",cP:"Опишите ваш вопрос, и адвокат свяжется с вами в течение 2 часов.",kPhone:"Телефон",kAddr:"Адрес",kHours:"Часы работы",addr:"Ереван, пр. Маштоца 10, офис 5",hours:"Пн–Пт 10:00–19:00, Сб 11:00–16:00",
+fName:"Имя",fPhone:"Телефон",fType:"Тип дела",fMsg:"Кратко опишите вопрос",fBtn:"Отправить заявку",okTxt:"Спасибо! Заявка принята. Для более быстрого ответа —",okWa:"напишите нам в WhatsApp →",
+qEye:"Частые вопросы",qH:"Вопросы и ответы",q1:"Сколько стоит консультация?",a1:"Первая 30-минутная консультация бесплатна. Стоимость дальнейшей работы согласуется заранее.",q2:"Можно ли получить консультацию онлайн?",a2:"Да, проводим консультации в Zoom, WhatsApp и Telegram.",q3:"Какие документы взять на первую встречу?",a3:"Паспорт и все документы по делу: договоры, переписку, судебные акты.",q4:"Работаете ли вы за пределами Еревана?",a4:"Да, представляем клиентов в судах всех областей Армении.",
+pin:"Лексора · Маштоца 10",copy:"© 2026 Лексора. Все права защищены.",demo:"Это демо-сайт. Сайт создал"},
+en:{brand:"LEXORA",brandSub:"Law Firm",nServices:"Services",nAbout:"About",nTeam:"Team",nReviews:"Reviews",nContact:"Contact",
+heroEye:"Yerevan · since 2011",heroH:"Your rights in <em>trusted hands</em>",heroP:"Civil, criminal, family and corporate matters. We represent your interests in courts of every instance.",
+cta1:"Book a consultation",cta2:"Our services",b1:"First consultation is free",b2:"HY · RU · EN",
+s1:"years of experience",s2:"cases handled",s3:"successful outcomes",s4:"Google rating",
+svcEye:"Services",svcH:"Legal support for every situation in life",svcP:"Every case is led by a lawyer who specialises in that area.",
+v1h:"Civil cases",v1p:"Contract disputes, debt recovery, damages.",v2h:"Criminal defence",v2p:"Defence at every stage of investigation and trial.",v3h:"Family law",v3p:"Divorce, alimony, child residence, division of property.",v4h:"Corporate law",v4p:"Company and sole-proprietor registration, contracts, retainer services.",v5h:"Real estate",v5p:"Transaction checks, inheritance, recognition of ownership.",v6h:"For foreigners",v6p:"Residency, work permits, document apostille.",
+qP:"We don't promise the impossible. We assess your case honestly and fight to the end.",qS:"— Aram Sargsyan, Managing Partner",whyEye:"Why us",
+w1h:"Transparent fees",w1p:"The price is agreed in advance and fixed in the contract. No hidden charges.",w2h:"Always in touch",w2p:"We keep you updated on your case via WhatsApp or Telegram.",w3h:"Confidentiality",w3p:"Attorney–client privilege is protected by law. Your data is never shared.",w4h:"Fast response",w4p:"We reply within 2 hours, and on weekends for urgent matters.",
+tEye:"Team",tH:"Lawyers people trust",m1n:"Aram Sargsyan",m1r:"Managing Partner",m1p:"Criminal and administrative cases. 18 years of experience, member of the Chamber of Advocates of Armenia.",m2n:"Lilit Hovhannisyan",m2r:"Attorney",m2p:"Family and inheritance law. Consultations in Russian and English.",m3n:"Davit Mkrtchyan",m3r:"Legal Counsel",m3p:"Corporate law, contracts, business registration and tax matters.",
+rEye:"Reviews",rH:"What our clients say",r1:"The case seemed hopeless, but it was resolved in three months. Every step was explained in plain language.",r1n:"Armen G.",r1s:"Civil case",r2:"They helped with an inheritance. Always reachable, even in the evening.",r2n:"Marine A.",r2s:"Inheritance",r3:"Very professional. They registered my company and handled the residency paperwork in English.",r3n:"James R.",r3s:"Corporate · Residency",gTxt:"on Google Maps — based on 120+ reviews",
+cEye:"Contact",cH:"Book a free consultation",cP:"Describe your question and a lawyer will contact you within 2 hours.",kPhone:"Phone",kAddr:"Address",kHours:"Working hours",addr:"Yerevan, 10 Mashtots Ave, office 5",hours:"Mon–Fri 10:00–19:00, Sat 11:00–16:00",
+fName:"Name",fPhone:"Phone",fType:"Type of case",fMsg:"Briefly describe your question",fBtn:"Send request",okTxt:"Thank you! Your request has been received. For a faster reply —",okWa:"message us on WhatsApp →",
+qEye:"FAQ",qH:"Questions & answers",q1:"How much does a consultation cost?",a1:"The first 30-minute consultation is free. The cost of further work is agreed in advance.",q2:"Can I get a consultation online?",a2:"Yes, we hold consultations via Zoom, WhatsApp and Telegram.",q3:"What documents should I bring to the first meeting?",a3:"Your passport and all documents related to the case: contracts, correspondence, court rulings.",q4:"Do you work outside Yerevan?",a4:"Yes, we represent clients in courts in every region of Armenia.",
+pin:"Lexora · 10 Mashtots Ave",copy:"© 2026 Lexora. All rights reserved.",demo:"This is a demo website. Built by"}
+};
+const HY={};document.querySelectorAll('[data-i]').forEach(e=>{const k=e.dataset.i;if(!(k in HY))HY[k]=e.hasAttribute('data-html')?e.innerHTML:e.textContent});
+T.hy=HY;
+const titles={hy:"Լեքսորա — Փաստաբանական գրասենյակ",ru:"Лексора — Адвокатская контора",en:"Lexora — Law Firm"};
+let cur="hy";
+function setLang(l){cur=l;document.documentElement.lang=l;
+ document.querySelectorAll('[data-i]').forEach(e=>{const v=T[l][e.dataset.i];if(v==null)return;e.hasAttribute('data-html')?e.innerHTML=v:e.textContent=v});
+ document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+ document.title=titles[l];try{localStorage.setItem('lx-lang',l)}catch(e){}}
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+try{const s=localStorage.getItem('lx-lang');if(s&&T[s])setLang(s)}catch(e){}
+document.querySelectorAll('.qa button').forEach(b=>b.onclick=()=>b.parentElement.classList.toggle('open'));
+document.querySelectorAll('.menu a').forEach(a=>a.onclick=()=>document.getElementById('menu').classList.remove('show'));
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();
+ const t=`${fn.value} (${fp.value})\n${ft.value}\n${fm.value}`;
+ document.getElementById('wa').href='https://wa.me/37499000000?text='+encodeURIComponent(t);
+ document.getElementById('ok').style.display='block';});
+</script>
+</body>
+</html>
